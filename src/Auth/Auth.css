@@ -1,0 +1,14 @@
+.mainAuthDiv {
+  background-image: url("../assets/bandStuff.jpeg");
+  background-size: cover;
+  height: 90vh;
+  width: 100vw;
+  filter: contrast(80%);
+  overflow: auto;
+}
+
+#loginButton:hover,
+#signupButton:hover {
+  box-shadow: 0.1em 0.1em 0.1em 0.1em #a37cbe;
+  border-color: transparent;
+}
