@@ -17,7 +17,7 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(`http://localhost:3000${APIURL}/auth/login`, {
+    fetch(`${APIURL}/auth/login`, {
       method: "POST",
       body: JSON.stringify({
         email: email,

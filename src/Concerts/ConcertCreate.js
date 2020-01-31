@@ -12,7 +12,7 @@ const ConcertCreate = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(`http://localhost:3000${APIURL}/concerts/review/`, {
+    fetch(`${APIURL}/concerts/review/`, {
       method: "POST",
       body: JSON.stringify({
         city: city,

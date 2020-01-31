@@ -15,7 +15,7 @@ const ConcertIndex = props => {
   const concertCard = () => {
     //Delete functionality
     const deleteConcert = concertInfo => {
-      fetch(`http://localhost:3000${APIURL}/concerts/${concertInfo.id}`, {
+      fetch(`${APIURL}/concerts/${concertInfo.id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
