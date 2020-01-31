@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalHeader
 } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 const Signup = props => {
   const [fullName, setFullName] = useState("");
@@ -17,7 +18,7 @@ const Signup = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:3000/auth/signup", {
+    fetch(`http://localhost:3000${APIURL}/auth/signup`, {
       method: "POST",
       body: JSON.stringify({
         fullname: fullName,

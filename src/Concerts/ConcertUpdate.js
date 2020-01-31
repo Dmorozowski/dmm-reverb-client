@@ -9,6 +9,7 @@ import {
   Input,
   Button
 } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 const ConcertUpdate = props => {
   const [editCity, setEditCity] = useState(props.concertToUpdate.city);
@@ -19,21 +20,24 @@ const ConcertUpdate = props => {
   const [editReview, setEditReview] = useState(props.concertToUpdate.review);
   const concertEdit = e => {
     e.preventDefault();
-    fetch(`http://localhost:3000/concerts/${props.concertToUpdate.id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        city: editCity,
-        venue: editVenue,
-        artist: editArtist,
-        date: editDate,
-        rating: editRating,
-        review: editReview
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: props.token
-      })
-    }).then(res => {
+    fetch(
+      `http://localhost:3000${APIURL}/concerts/${props.concertToUpdate.id}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          city: editCity,
+          venue: editVenue,
+          artist: editArtist,
+          date: editDate,
+          rating: editRating,
+          review: editReview
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: props.token
+        })
+      }
+    ).then(res => {
       props.fetchConcerts();
       props.updateOff();
     });

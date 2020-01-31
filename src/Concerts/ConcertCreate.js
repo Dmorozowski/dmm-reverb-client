@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 const ConcertCreate = props => {
   const [city, setCity] = useState("");
@@ -11,7 +12,7 @@ const ConcertCreate = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:3000/concerts/review/", {
+    fetch(`http://localhost:3000${APIURL}/concerts/review/`, {
       method: "POST",
       body: JSON.stringify({
         city: city,

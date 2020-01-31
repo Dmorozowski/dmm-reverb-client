@@ -9,6 +9,7 @@ import {
   Input,
   Button
 } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:3000/auth/login", {
+    fetch(`http://localhost:3000${APIURL}/auth/login`, {
       method: "POST",
       body: JSON.stringify({
         email: email,

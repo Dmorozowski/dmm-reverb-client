@@ -4,6 +4,7 @@ import ConcertCreate from "./ConcertCreate";
 import ConcertDisplay from "./ConcertReview/ConcertDisplay";
 import ConcertUpdate from "./ConcertUpdate";
 import "./ConcertIndex.css";
+import APIURL from "../helpers/environment";
 //Setting up concert review page
 const ConcertIndex = props => {
   const [concerts, setConcerts] = useState([]);
@@ -14,7 +15,7 @@ const ConcertIndex = props => {
   const concertCard = () => {
     //Delete functionality
     const deleteConcert = concertInfo => {
-      fetch(`http://localhost:3000/concerts/${concertInfo.id}`, {
+      fetch(`http://localhost:3000${APIURL}/concerts/${concertInfo.id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
