@@ -84,7 +84,7 @@ const ConcertIndex = props => {
   };
 
   const fetchConcerts = () => {
-    fetch("http://localhost:3000/concerts/mine", {
+    fetch(`${APIURL}/concerts/mine`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
