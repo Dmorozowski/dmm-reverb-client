@@ -48,7 +48,6 @@ const Login = props => {
       <ModalHeader>Login</ModalHeader>
       <ModalBody>
         <Form onSubmit={handleSubmit}>
-          <h2>Login</h2>
           {/* {signupFields()} */}
           <FormGroup>
             <Label htmlFor="email">Email:</Label>
@@ -75,7 +74,7 @@ const Login = props => {
             <Label htmlFor="password">Password: </Label>
             <br />
             <Input
-              type="text"
+              type="password"
               placeholder="Must use 5 characters or more, at least 1 special character"
               id="password"
               value={password}
@@ -92,8 +91,10 @@ const Login = props => {
             </Label>
             <br />
           </FormGroup>
-
-          <Button type="submit">Submit User Data</Button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button type="submit">Submit User Data</Button>
+            <Button onClick={() => props.setLogin(false)}>Cancel</Button>
+          </div>
           {/* <Button type="button" onClick={() => setLogin(false)}>
             Cancel
           </Button> */}

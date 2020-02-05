@@ -5,6 +5,8 @@ import Sitebar from "./Home/Navbar";
 import Auth from "./Auth/Auth";
 import ConcertIndex from "./Concerts/ConcertIndex";
 import HomeNavbar from "./Home/HomeNavbar";
+import Home from "./Home/Home";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -23,11 +25,9 @@ function App() {
 
   const protectedViews = () => {
     return sessionToken ? (
-      <ConcertIndex token={sessionToken} />
+      <Home token={sessionToken} />
     ) : (
-      <div className="authDiv">
-        <Auth updateToken={updateToken} />
-      </div>
+      <Auth updateToken={updateToken} />
     );
   };
 
@@ -43,6 +43,10 @@ function App() {
       {whichNavbar()}
       {protectedViews()}
       <br />
+      {/* <Router> */}
+      {/* <Sitebar /> */}
+      {/* <Home token={sessionToken} /> */}
+      {/* </Router> */}
     </div>
   );
 }

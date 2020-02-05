@@ -1,43 +1,55 @@
 import React, { useState } from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
-import { Route, Link, Switch } from "react-router-dom";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
+  Collapse,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
+// import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import Logout from "../Auth/Logout/Logout";
 import "./Navbar.css";
-import FindConcerts from "../ConcertApi/FindConcerts";
-import { BrowserRouter as Router } from "react-router-dom";
 
 const Sitebar = props => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => {
-    let newIsOpen = !isOpen;
-    setIsOpen(newIsOpen);
-  };
+  // const [isOpen, setIsOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
   return (
     <Navbar
-      style={{ backgroundColor: "#AAE2DB", justifyContent: "space-between" }}
+      style={{ backgroundColor: "#A37CBE", justifyContent: "space-between" }}
       light
-      expand="md"
+      // expand="md"
     >
-      <img src={require("../assets/UpdatedReverLogo.png")} className="logo" />
-      <NavbarBrand href="/" style={{ fontSize: "3em", textAlign: "center" }}>
+      <img
+        src={require("../assets/UpdatedReverLogo.png")}
+        className="logo"
+        style={{ borderRadius: "40px" }}
+      />
+      <NavbarBrand href="/" style={{ fontSize: "2em", textAlign: "center" }}>
         Reverb: Concert Reviews
       </NavbarBrand>
-      <Logout setSession={props.setSession} />
-      <Router>
-        <ul className="findThings">
-          <li>
-            <Link to="/findconcerts">Search For Concerts</Link>
-          </li>
-        </ul>
-
-        <div className="concert-route">
-          <Switch>
-            <Route exact path="/findconcerts">
-              <FindConcerts />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+      <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+      <Collapse isOpen={!collapsed} navbar>
+        <Nav navbar>
+          <NavItem>
+            <NavLink href="/">Review concerts!</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/ticketmasterindex">
+              Search upcoming concerts!
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <Logout setSession={props.setSession} />
+          </NavItem>
+        </Nav>
+      </Collapse>
     </Navbar>
   );
 };

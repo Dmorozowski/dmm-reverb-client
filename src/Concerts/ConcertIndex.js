@@ -32,7 +32,8 @@ const ConcertIndex = props => {
           style={{
             boxShadow: "8px 8px 8px black",
             display: "flex",
-            margin: "5em"
+            margin: "5em",
+            backgroundColor: "#78D0C2"
           }}
         >
           <ConcertDisplay

@@ -47,6 +47,7 @@ import "./Auth.css";
 const Auth = props => {
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
+  const [modal, setModal] = useState(true);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -69,11 +70,23 @@ const Auth = props => {
   // };
 
   const getLogin = () => {
-    return login === true ? <Login updateToken={props.updateToken} /> : <></>;
+    return login === true ? (
+      <Login updateToken={props.updateToken} setLogin={setLogin} />
+    ) : (
+      <></>
+    );
   };
 
   const getSignup = () => {
-    return signup === true ? <Signup updateToken={props.updateToken} /> : <></>;
+    return signup === true ? (
+      <Signup updateToken={props.updateToken} setSignup={setSignup} />
+    ) : (
+      <></>
+    );
+  };
+
+  const toggleModal = () => {
+    setModal(true);
   };
   return (
     <div className="mainAuthDiv">
@@ -83,90 +96,77 @@ const Auth = props => {
       ></img> */}
       <Container className="auth-container">
         <Row>
-          <Col md="4" className="signup-col">
+          <Col
+            md="6"
+            className="signup-col"
+            style={{
+              marginTop: "8vh",
+              display: "flex",
+              justifyContent: "space-between"
+            }}
+          >
             {getSignup()}
-            <Button
-              type="button"
-              onClick={() => setSignup(true)}
-              id="signupButton"
+
+            <div
               style={{
-                height: "4em",
-                width: "10em",
-                backgroundColor: "transparent",
-                color: "white",
-                fontWeight: "bold",
-                fontWeight: "bold",
-                fontSize: "2em",
-                padding: "0px 0px",
-                borderColor: "transparent",
-                textShadow: "0.1em 0.1em #A37CBE",
-                position: "relative",
-                top: "2em"
+                alignItems: "center"
               }}
             >
-              Signup
-            </Button>
-            {getLogin()}
-            <Button
-              type="button"
-              onClick={() => setLogin(true)}
-              id="loginButton"
-              style={{
-                height: "4em",
-                width: "10em",
-                backgroundColor: "transparent",
-                color: "white",
-                fontWeight: "bold",
-                fontSize: "2em",
-                padding: "0px 0px",
-                borderColor: "transparent",
-                textShadow: "0.1em 0.1em #A37CBE",
-                position: "relative",
-                top: "3.5em"
-              }}
-            >
-              Login
-            </Button>
-          </Col>
-          <Col md="2" className="space-col"></Col>
-          <Col md="6" className="login-col">
-            {/* <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-              <CarouselIndicators
-                activeIndex={activeIndex}
-                onClickHandler={goToIndex}
-              />
-              <CarouselItem
-                className="item"
-                onExiting={() => setAnimating(true)}
-                onExited={() => setAnimating(false)}
-                key={require("../assets/moonTaxi.jpg")}
+              <Button
+                type="button"
+                onClick={() => setSignup(true)}
+                id="signupButton"
+                style={{
+                  height: "4em",
+                  width: "10em",
+                  backgroundColor: "transparent",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontWeight: "bold",
+                  fontSize: "2em",
+                  padding: "0px 0px",
+                  borderColor: "transparent",
+                  textShadow: "0.1em 0.1em #A37CBE",
+                  position: "relative"
+                  // top: "2em"
+                }}
               >
-                <img
-                  src={require("../assets/moonTaxi.jpg")}
-                  alt={"Moon Taxi Show"}
-                />
-                <CarouselCaption
-                  captionText={
-                    "Incredible energy, no matter how large the venue or crowd. One of my favorite bands to see live!"
-                  }
-                  captionHeader={"Moon Taxi performing at the Bluebird"}
-                />
-              </CarouselItem>
-              <CarouselControl
-                direction="prev"
-                directionText="Previous"
-                onClickHandler={previous}
-              />
-              <CarouselControl
-                direction="next"
-                directionText="Next"
-                onClickHandler={next}
-              />
-            </Carousel> */}
+                Signup
+              </Button>
+              {getLogin()}
+              <Button
+                type="button"
+                onClick={() => setLogin(true)}
+                id="loginButton"
+                style={{
+                  height: "4em",
+                  width: "10em",
+                  backgroundColor: "transparent",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "2em",
+                  padding: "0px 0px",
+                  borderColor: "transparent",
+                  textShadow: "0.1em 0.1em #A37CBE",
+                  position: "relative"
+                  // top: "3.5em"
+                }}
+              >
+                Login
+              </Button>
+            </div>
+          </Col>
+
+          <Col
+            md="6"
+            className="login-col"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             <Card
               style={{
-                height: "35em",
-                width: "30em",
+                minHeight: "50vh",
+                maxHeight: "86vh",
+                minWidth: "30vw",
                 borderRadius: "20px",
                 border: "0.2em solid  #a37cbe",
                 backgroundColor: "#E8E9E9"
@@ -179,7 +179,11 @@ const Auth = props => {
 
                 <CardImg
                   src={require("../assets/moonTaxi.jpg")}
-                  style={{ height: "22em", width: "19em" }}
+                  style={{
+                    minHeight: "32vh",
+                    maxHeight: "50vh",
+                    minWidth: "20vw"
+                  }}
                 />
                 <br />
                 <br />

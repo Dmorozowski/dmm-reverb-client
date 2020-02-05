@@ -103,7 +103,10 @@ const Signup = props => {
             </Label>
             <br />
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button type="submit">Submit</Button>
+            <Button onClick={() => props.setSignup(false)}>Cancel</Button>
+          </div>
         </Form>
       </ModalBody>
     </Modal>
